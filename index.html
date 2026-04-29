@@ -812,6 +812,18 @@ footer{
   border:2px solid transparent;transition:border-color var(--transition);
 }
 .color-chip.active{border-color:#fff}
+.img-upload-block{
+  margin-bottom:20px;
+  padding:16px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:2px;
+}
+.img-upload-block .admin-label{
+  color:rgba(255,255,255,0.7);
+  font-size:12px;font-weight:600;
+  letter-spacing:0.05em;margin-bottom:0;
+}
 .admin-logout{
   width:100%;background:transparent;border:1px solid rgba(255,255,255,0.15);
   color:rgba(255,255,255,0.45);font-size:12px;padding:10px;border-radius:2px;
@@ -1583,30 +1595,125 @@ body.admin-mode [data-editable]:hover{
     <div class="admin-tab-panel" id="tab-images">
       <div class="admin-section">
         <div class="admin-section-title">이미지 관리</div>
-        <div class="admin-row">
-          <div class="admin-label">히어로 배경</div>
-          <button class="admin-img-btn" onclick="uploadImg('hero-img','prev-hero')">📁 업로드</button>
+        <p style="color:rgba(255,255,255,0.45);font-size:12px;margin-bottom:20px;line-height:1.7">
+          📌 각 이미지마다 <strong style="color:var(--gold2)">① 파일 선택 → ② 저장 버튼 클릭</strong> 순서로 진행하세요.<br>
+          저장 후 새로고침해도 이미지가 유지됩니다.
+        </p>
+
+        <!-- 히어로 -->
+        <div class="img-upload-block">
+          <div class="admin-label">① 히어로 배경 이미지</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('hero-img','prev-hero','save-img-hero')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-hero" onclick="saveImg('hero-img','prev-hero','saved-hero')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
           <img id="prev-hero" class="admin-img-preview">
+          <div class="admin-success" id="saved-hero">✅ 히어로 이미지 저장 완료!</div>
         </div>
-        <div class="admin-row">
-          <div class="admin-label">소개 섹션 이미지</div>
-          <button class="admin-img-btn" onclick="uploadImg('about-img','prev-about')">📁 업로드</button>
+
+        <!-- 소개 -->
+        <div class="img-upload-block">
+          <div class="admin-label">② 소개 섹션 이미지</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('about-img','prev-about','save-img-about')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-about" onclick="saveImg('about-img','prev-about','saved-about')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
           <img id="prev-about" class="admin-img-preview">
+          <div class="admin-success" id="saved-about">✅ 소개 이미지 저장 완료!</div>
         </div>
-        <div class="admin-row">
-          <div class="admin-label">입지 섹션 이미지</div>
-          <button class="admin-img-btn" onclick="uploadImg('location-img','prev-loc')">📁 업로드</button>
+
+        <!-- 입지 -->
+        <div class="img-upload-block">
+          <div class="admin-label">③ 입지 섹션 이미지</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('location-img','prev-loc','save-img-loc')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-loc" onclick="saveImg('location-img','prev-loc','saved-loc')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
           <img id="prev-loc" class="admin-img-preview">
+          <div class="admin-success" id="saved-loc">✅ 입지 이미지 저장 완료!</div>
         </div>
-        <div class="admin-label" style="margin-top:20px;margin-bottom:10px">컬렉션 이미지 (4장)</div>
-        <div class="admin-row"><div class="admin-label">컬렉션 1</div><button class="admin-img-btn" onclick="uploadImg('coll-img-1','prev-c1')">📁 업로드</button><img id="prev-c1" class="admin-img-preview"></div>
-        <div class="admin-row"><div class="admin-label">컬렉션 2</div><button class="admin-img-btn" onclick="uploadImg('coll-img-2','prev-c2')">📁 업로드</button><img id="prev-c2" class="admin-img-preview"></div>
-        <div class="admin-row"><div class="admin-label">컬렉션 3</div><button class="admin-img-btn" onclick="uploadImg('coll-img-3','prev-c3')">📁 업로드</button><img id="prev-c3" class="admin-img-preview"></div>
-        <div class="admin-row"><div class="admin-label">컬렉션 4</div><button class="admin-img-btn" onclick="uploadImg('coll-img-4','prev-c4')">📁 업로드</button><img id="prev-c4" class="admin-img-preview"></div>
-        <div class="admin-label" style="margin-top:20px;margin-bottom:10px">뉴스 이미지 (3장)</div>
-        <div class="admin-row"><div class="admin-label">뉴스 1</div><button class="admin-img-btn" onclick="uploadImg('news-img-1','prev-n1')">📁 업로드</button><img id="prev-n1" class="admin-img-preview"></div>
-        <div class="admin-row"><div class="admin-label">뉴스 2</div><button class="admin-img-btn" onclick="uploadImg('news-img-2','prev-n2')">📁 업로드</button><img id="prev-n2" class="admin-img-preview"></div>
-        <div class="admin-row"><div class="admin-label">뉴스 3</div><button class="admin-img-btn" onclick="uploadImg('news-img-3','prev-n3')">📁 업로드</button><img id="prev-n3" class="admin-img-preview"></div>
+
+        <div class="admin-section-title" style="margin-top:24px">컬렉션 이미지 (4장)</div>
+
+        <!-- 컬렉션 1~4 -->
+        <div class="img-upload-block">
+          <div class="admin-label">④ 컬렉션 1 — 지구 자연사</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('coll-img-1','prev-c1','save-img-c1')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-c1" onclick="saveImg('coll-img-1','prev-c1','saved-c1')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
+          <img id="prev-c1" class="admin-img-preview">
+          <div class="admin-success" id="saved-c1">✅ 컬렉션 1 저장 완료!</div>
+        </div>
+
+        <div class="img-upload-block">
+          <div class="admin-label">⑤ 컬렉션 2 — 왕관·보석</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('coll-img-2','prev-c2','save-img-c2')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-c2" onclick="saveImg('coll-img-2','prev-c2','saved-c2')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
+          <img id="prev-c2" class="admin-img-preview">
+          <div class="admin-success" id="saved-c2">✅ 컬렉션 2 저장 완료!</div>
+        </div>
+
+        <div class="img-upload-block">
+          <div class="admin-label">⑥ 컬렉션 3 — 화폐·우표</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('coll-img-3','prev-c3','save-img-c3')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-c3" onclick="saveImg('coll-img-3','prev-c3','saved-c3')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
+          <img id="prev-c3" class="admin-img-preview">
+          <div class="admin-success" id="saved-c3">✅ 컬렉션 3 저장 완료!</div>
+        </div>
+
+        <div class="img-upload-block">
+          <div class="admin-label">⑦ 컬렉션 4 — 유물·예술품</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('coll-img-4','prev-c4','save-img-c4')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-c4" onclick="saveImg('coll-img-4','prev-c4','saved-c4')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
+          <img id="prev-c4" class="admin-img-preview">
+          <div class="admin-success" id="saved-c4">✅ 컬렉션 4 저장 완료!</div>
+        </div>
+
+        <div class="admin-section-title" style="margin-top:24px">뉴스 이미지 (3장)</div>
+
+        <div class="img-upload-block">
+          <div class="admin-label">⑧ 뉴스 1</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('news-img-1','prev-n1','save-img-n1')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-n1" onclick="saveImg('news-img-1','prev-n1','saved-n1')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
+          <img id="prev-n1" class="admin-img-preview">
+          <div class="admin-success" id="saved-n1">✅ 뉴스 1 저장 완료!</div>
+        </div>
+
+        <div class="img-upload-block">
+          <div class="admin-label">⑨ 뉴스 2</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('news-img-2','prev-n2','save-img-n2')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-n2" onclick="saveImg('news-img-2','prev-n2','saved-n2')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
+          <img id="prev-n2" class="admin-img-preview">
+          <div class="admin-success" id="saved-n2">✅ 뉴스 2 저장 완료!</div>
+        </div>
+
+        <div class="img-upload-block">
+          <div class="admin-label">⑩ 뉴스 3</div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="admin-img-btn" style="flex:1" onclick="selectImg('news-img-3','prev-n3','save-img-n3')">📁 파일 선택</button>
+            <button class="admin-save-btn" id="save-img-n3" onclick="saveImg('news-img-3','prev-n3','saved-n3')" style="width:80px;margin:0;opacity:0.4;pointer-events:none">저장 ✓</button>
+          </div>
+          <img id="prev-n3" class="admin-img-preview">
+          <div class="admin-success" id="saved-n3">✅ 뉴스 3 저장 완료!</div>
+        </div>
+
+        <!-- 전체 이미지 저장 -->
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08)">
+          <button class="admin-save-btn" onclick="saveAllImages()" style="background:var(--gold2)">💾 모든 이미지 한번에 저장</button>
+          <div class="admin-success" id="saved-all">✅ 모든 이미지 저장 완료!</div>
+        </div>
+
       </div>
     </div>
 
@@ -1808,29 +1915,135 @@ function saveSection(section){
 }
 
 // ══════════════════════════════════════
-// IMAGE UPLOAD
+// IMAGE UPLOAD — NEW SYSTEM
 // ══════════════════════════════════════
-function uploadImg(imgId,prevId){
-  currentImgTarget=imgId;
-  currentPrevTarget=prevId;
+let pendingImgId=null;
+let pendingPrevId=null;
+let pendingSaveBtnId=null;
+
+// 파일 선택 버튼 클릭
+function selectImg(imgId,prevId,saveBtnId){
+  pendingImgId=imgId;
+  pendingPrevId=prevId;
+  pendingSaveBtnId=saveBtnId;
   document.getElementById('file-input').click();
 }
+
+// 파일 선택 완료 → 미리보기만 표시, 저장버튼 활성화
 function handleFileUpload(e){
   const file=e.target.files[0];
   if(!file)return;
+  
+  // 파일 크기 체크 (2MB 이하 권장)
+  if(file.size > 3*1024*1024){
+    alert('파일 크기가 너무 큽니다.\n3MB 이하 이미지를 사용해주세요.\n(큰 이미지는 저장이 안될 수 있습니다)');
+  }
+  
   const reader=new FileReader();
   reader.onload=function(ev){
     const src=ev.target.result;
-    const img=document.getElementById(currentImgTarget);
-    if(img)img.src=src;
-    const prev=document.getElementById(currentPrevTarget);
+    
+    // 미리보기 표시
+    const prev=document.getElementById(pendingPrevId);
     if(prev){prev.src=src;prev.style.display='block';}
-    const saved=getSaved();
-    saved['img_'+currentImgTarget]=src;
-    localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));
+    
+    // 실제 이미지도 미리 변경 (미리보기용)
+    const img=document.getElementById(pendingImgId);
+    if(img) img.src=src;
+    
+    // 저장 버튼 활성화
+    const saveBtn=document.getElementById(pendingSaveBtnId);
+    if(saveBtn){
+      saveBtn.style.opacity='1';
+      saveBtn.style.pointerEvents='auto';
+      saveBtn.style.background='var(--gold)';
+      // 저장할 데이터를 버튼에 임시 저장
+      saveBtn.dataset.src=src;
+    }
   };
   reader.readAsDataURL(file);
   e.target.value='';
+}
+
+// 저장 버튼 클릭 → localStorage에 저장
+function saveImg(imgId,prevId,successId){
+  const saveBtn=document.getElementById('save-img-'+imgId.replace('img-','').replace('-img',''));
+  // saveBtnId 찾기
+  let src=null;
+  // 모든 저장버튼에서 해당 imgId의 data-src 찾기
+  document.querySelectorAll('[id^="save-img-"]').forEach(btn=>{
+    if(btn.dataset.src && btn.onclick && btn.getAttribute('onclick').includes(imgId)){
+      src=btn.dataset.src;
+    }
+  });
+  
+  // 미리보기 이미지에서 src 가져오기
+  const prev=document.getElementById(prevId);
+  if(prev && prev.src && prev.src.startsWith('data:')){
+    src=prev.src;
+  }
+  
+  if(!src){
+    alert('먼저 파일을 선택해주세요!');
+    return;
+  }
+  
+  try{
+    const saved=getSaved();
+    saved['img_'+imgId]=src;
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));
+    
+    // 성공 메시지
+    const msg=document.getElementById(successId);
+    if(msg){msg.style.display='block';setTimeout(()=>msg.style.display='none',3000);}
+    
+    // 저장 버튼 상태 변경
+    const allBtns=document.querySelectorAll('[id^="save-img-"]');
+    allBtns.forEach(btn=>{
+      if(btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(imgId)){
+        btn.textContent='저장됨 ✓';
+        btn.style.background='#2a7a4f';
+        setTimeout(()=>{btn.textContent='저장 ✓';btn.style.background='var(--gold)';},2000);
+      }
+    });
+  } catch(err){
+    alert('저장 실패: 이미지가 너무 큽니다.\n더 작은 파일을 사용해주세요. (권장: 1MB 이하)');
+  }
+}
+
+// 모든 이미지 한번에 저장
+function saveAllImages(){
+  const imgIds=['hero-img','about-img','location-img','coll-img-1','coll-img-2','coll-img-3','coll-img-4','news-img-1','news-img-2','news-img-3'];
+  const saved=getSaved();
+  let count=0;
+  
+  imgIds.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el && el.src && el.src.startsWith('data:')){
+      saved['img_'+id]=el.src;
+      count++;
+    }
+  });
+  
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(saved));
+    const msg=document.getElementById('saved-all');
+    if(msg){
+      msg.textContent=`✅ ${count}개 이미지 저장 완료!`;
+      msg.style.display='block';
+      setTimeout(()=>msg.style.display='none',3000);
+    }
+  } catch(err){
+    alert('일부 이미지가 너무 커서 저장되지 않았습니다.\n이미지를 개별로 저장해보세요.');
+  }
+}
+
+// 기존 호환성 유지
+function uploadImg(imgId,prevId){
+  pendingImgId=imgId;
+  pendingPrevId=prevId;
+  pendingSaveBtnId=null;
+  document.getElementById('file-input').click();
 }
 
 // Load saved images
